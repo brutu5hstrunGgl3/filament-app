@@ -14,6 +14,7 @@ use Filament\Tables\Table;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
+
 use Filament\Tables\Columns\SelectColumn;
 use  Filament\Tables\Columns\TextColumn;
 
@@ -23,8 +24,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class AnggotaResource extends Resource
 {
     protected static ?string $model = Anggota::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+    protected static ?string $navigationLabel = 'Input Anggota';
+    public static ?string $label = 'kelola anggota';
 
     public static function form(Form $form): Form
     {
@@ -59,7 +62,8 @@ class AnggotaResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('name')
+                ->searchable(),
                 TextColumn::make('position'),
                 TextColumn::make('alamat'),
                 TextColumn::make('jenis_kelamin'), // Change this to SelectColumn
